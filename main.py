@@ -171,13 +171,6 @@ def show_login_page():
         show_empty_manage_form()
 
 
-# Инициализируем пользователей
-User('admin', 'admin', 'admin')
-User('man', 'man', 'manager')
-User('en', 'en', 'engineer')
-
 if __name__ == '__main__':
     while True:
-        #show_login_page() Failed!
         show_login_page()
-        #admin_form() passed!

@@ -1,5 +1,7 @@
 from app import app
-from flask import render_template
+from flask import render_template, request
+from app.forms import *
+
 
 
 @app.route('/')
@@ -8,5 +10,10 @@ def hello():
     return render_template('hello.html')
 
 
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    form = LoginForm()
+    if request.method == 'POST':
+        ans = request
+        print(some)
+    return render_template('new_login.html', title='Log in', form=form)
