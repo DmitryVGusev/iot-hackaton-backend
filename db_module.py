@@ -11,9 +11,15 @@ class DBConnection:
         self.cursor = self.connection.cursor()
 
     def add_user(self, login, password, role):
+        """Добавляет пользователя в БД"""
         query = ['INSERT INTO User (Name, Password, Role) VALUES (?, ?, ?);', (login, password, role)]
         self.cursor.execute(*query)
         self.connection.commit()
+
+    def user_remove(self, name):
+        """Удаляет пользователя из БД"""
+        query = ['DELETE FROM User WHERE name = ?', (name,)]
+        self.cursor.execute(*query)
 
     def db_drop(self):  # TODO реализовать
         """Дропает базу и создает таблицу с пользователями"""
@@ -22,7 +28,7 @@ class DBConnection:
         # Создаем таблицу с ползователями
         self.cursor.execute("CREATE TABLE User("
                             "id INTEGER PRIMARY KEY ASC, "
-                            "Name TEXT, "
+                            "Name TEXT UNIQUE, "
                             "Password TEXT,"
                             "Role TEXT);")
 
@@ -38,7 +44,7 @@ class DBConnection:
             return ans[0]
 
     def get_all(self):
-        return self.cursor.execute("SELECT * FROM User").fetchall()
+        return self.cursor.execute("SELECT Name, Role FROM User").fetchall()
 
     def db_check_user_passwd(self, username, password):
         """Проверяет пароль пользователя"""
@@ -54,7 +60,6 @@ class DBConnection:
 if __name__ == '__main__':
     conn = DBConnection()
     conn.db_drop()
-    print(conn.db_check_user_passwd('admin', 'admin'))
-    print(conn.db_check_user_passwd('man', 'mana'))
+    print(conn.get_all())
 
     conn.db_close()

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import ii_module
 import getpass
+import db_module
 
 
 class User:  # TODO Нужно ли еще доработать?
@@ -21,6 +22,8 @@ class User:  # TODO Нужно ли еще доработать?
         for user in User.userlist:
             if login == user.name:
                 return user
+
+
 
 
 def show_empty_manage_form():
@@ -75,6 +78,7 @@ def manage_form():
 
 
 def admin_form():
+    db = db_module.DBConnection()
     while True:
         print("\nВыберите действие:")
         print("1 - Добавить пользователя")
@@ -89,7 +93,8 @@ def admin_form():
             login = input("Введите имя пользователя (Логин): ")
 
             # Если такой пользователь уже есть то выкинуть ошибку!
-            if User.registered_user(login):
+            #if User.registered_user(login):
+            if db.user_registered(login):
                 print("Такой пользователь уже присутствует в системе!\n")
                 continue
 
@@ -102,18 +107,19 @@ def admin_form():
             if role not in ['admin', 'manager', 'engineer']:
                 print("Неверная роль!\n")
                 continue
+
             print("Создание ползователя...")
-            User(login, passwd, role)
+            db.add_user(login, passwd, role)
             print("Пользователь {} создан с превилегиями {}\n".format(login, role))
 
         elif choise == 2:
             name = input("Введите имя ползователя для удаления: ")
-            user = User.registered_user(name)
-            if not user:
+            if not db.user_registered(name):
                 print("Данный пользователь не зарегистрирован в системе!")
             choise = input('Вы действительно хотите удалить данного пользователя? (y/n): ')
             if choise.lower() in ['yes', 'y']:
-                User.userlist.remove(user)
+                #User.userlist.remove(user)
+                db.user_remove(name)
                 print("Пользователь {} был удален!".format(name))
             else:
                 print("Отмена.")
@@ -121,8 +127,8 @@ def admin_form():
         elif choise == 3:
             template = "{0:<20} {1:<7}"
             print(template.format("\nИмя пользователя", "Роль"))
-            for user in User.userlist:
-                print(template.format(user.name, user.role))
+            for user in db.get_all():
+                print(template.format(*user))
 
 
 def db_call_machine_state():
