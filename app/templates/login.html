@@ -22,17 +22,17 @@
         <div class="d-flex justify-content-around">
 
 
-            <form action="" method="post" class="form-inline">
-                <div class="d-flex flex-column">
+            <form action="" method="post" novalidate class="form-inline ">
+                                <div class="d-flex flex-column">
                 <div class="form-group mb-2">
-                    <label for="Login" class="sr-only">Login</label>
+                    <label class="sr-only">Login</label>
                     {{form.username()}}
                 </div>
                 <div class="form-group mb-2">
-                    <label for="Password" class="sr-only">Password</label>
+                    <label class="sr-only">Password</label>
                     {{form.password()}}
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+                    {{form.submit()}}
             </form>
 
 

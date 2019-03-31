@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Последняя компиляция и сжатый CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Дополнение к теме -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container shadow p-3 mb-5 bg-white rounded">
+
+    <div class="jumbotron">
+        <h1 class="display-4">Система управления для инженера</h1>
+
+        <hr class="my-4">
+        <div class="alert alert-success" role="alert"><p class="text-center">Состояние станков:</p></div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+
+                    <thead>
+                    <tr>
+                        <th class="text-left" scope="col">ID станка</th>
+                        <th class="text-center" scope="col">Вероятность поломки</th>
+                        <th class="text-center" scope="col">Износ</th>
+                        <th class="text-center" scope="col">Статус</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%- for line in data -%}
+                        <tr class="danger" >
+                            <td class="text-left">{{ line[0] }}</td>
+                            <td class="text-center">{{ line[1] }}</td>
+                            <td class="text-center">{{ line[2] }}</td>
+                            <td class="text-center">{{ line[3] }}</td>
+                        </tr>
+                    {%- endfor -%}
+                    </tbody>
+
+            </table>
+        </div>
+
+</div>
+
+<!-- Последняя компиляция и сжатый JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+</html>
