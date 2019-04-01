@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление производством</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container shadow p-3 mb-5 bg-white rounded">
+
+    <div class="jumbotron">
+        <h1 class="display-4">Результат анализа заказа:</h1>
+
+
+
+
+        <hr class="my-4">
+
+        <div class="alert alert-info" role="alert"><p class="text-center">Данные заказа:</p></div>
+
+        <div class="form-inline d-flex justify-content-center">
+            <div class="d-flex flex-column">
+                <div class="m-1">
+                    <p><b>Заказчик:</b>  {{ form[0] }}</p>
+                </div>
+                <div class="m-1">
+                    <p><b>Название изделия:</b> {{ form[1] }}</p>
+                </div>
+                <div class="m-1">
+                    <p><b>Количество изделий:</b> {{ form[2] }}</p>
+                </div>
+                <div class="m-1">
+                    <p><b>Цена:</b> {{ form[3] }}</p>
+                </div>
+                <div class="m-1">
+                    <p><b>Приоритет:</b> {{ form[4] }}</p>
+                </div>
+                <div class="m-1 ">
+                    <p><b>Желаемый срок:</b> {{ form[5] }}</p>
+                </div>
+                {% if form[7] %}
+                <div class="alert alert-success" role="alert">
+                    {%- endif -%}
+                    {% if not form[7] %}
+                <div class="alert alert-danger" role="alert">
+                    {%- endif -%}
+                    <p><b>Прогноз:</b> {{ form[6] }}</p>
+                </div>
+
+
+
+                <div class="d-flex justify-content-around">
+                <a class="btn btn-primary btn-lg m-1" href="/manager" role="button">Готово</a>
+                    <a class="btn btn-danger btn-lg m-1" href="/manager" role="button">Изменить заказ</a>
+            </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="/practice.js"></script>
+</body>
+</html>
+
+<div class="alert alert-info" role="alert">
+    <p class="lead">Берем заказ на исполение:</p>
+    <p class="font-weight-bold">OK</p>
+</div>
+

@@ -18,8 +18,9 @@
 
         <hr class="my-4">
         <div class="alert alert-success" role="alert"><p class="text-center">Состояние станков:</p></div>
-
+        <form action="" method="post" novalidate class="form-inline ">
         <div class="table-responsive">
+
             <table class="table table-hover">
 
                     <thead>
@@ -32,7 +33,15 @@
                     </thead>
                     <tbody>
                     {%- for line in data -%}
+                        {%- if line[3] == '|||' -%}
                         <tr class="danger" >
+                            {%- endif -%}
+                        {%- if line[3] == '||' -%}
+                        <tr class="warning" >
+                            {%- endif -%}
+                        {%- if line[3] == '|' -%}
+                        <tr class="success" >
+                            {%- endif -%}
                             <td class="text-left">{{ line[0] }}</td>
                             <td class="text-center">{{ line[1] }}</td>
                             <td class="text-center">{{ line[2] }}</td>
@@ -42,7 +51,10 @@
                     </tbody>
 
             </table>
+
         </div>
+        </form>
+
 
 </div>
 
